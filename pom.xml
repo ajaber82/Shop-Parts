@@ -3,13 +3,13 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>net.sportsultras.rest</groupId>
-	<artifactId>sports-ultras-rest</artifactId>
+	<groupId>net.partsshop.rest</groupId>
+	<artifactId>parts-shop-rest</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>sports-ultras-rest</name>
-	<description>Rest for sports ultras</description>
+	<name>parts-shop-rest</name>
+	<description>Rest for parts shop</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
