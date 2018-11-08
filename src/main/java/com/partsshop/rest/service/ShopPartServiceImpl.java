@@ -8,8 +8,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.partsshop.rest.dto.CarRest;
 import com.partsshop.rest.dto.ShopsPartsRest;
 import com.partsshop.rest.dto.ShopsRest;
+import com.partsshop.rest.model.Car;
 import com.partsshop.rest.model.PartsCategory;
 import com.partsshop.rest.model.Shops;
 import com.partsshop.rest.model.ShopsParts;
@@ -103,10 +105,16 @@ public class ShopPartServiceImpl implements ShopPartService {
 	}
 
 	@Override
-	public List<ShopsPartsRest> getShopsPartsByName(String name) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public List<ShopsPartsRest> getCarsByCriteria( PartsCategory partName, Car carMake, Car carModel,Integer year) {
+         
+		List<ShopsParts> shopsParts=repo.findCarsByCriteria(partName, carMake, carModel, year);
+		
+		//Note:not understand why give me error if i remove getCurrency and getPrice!!!
+		return shopsParts.stream().map(shopPart -> new ShopsPartsRest(shopPart.getId(), shopPart.getPart(),shopPart.getShop()
+				,shopPart.getCar(),shopPart.getYear(),shopPart.getCurrency(),shopPart.getPrice()))
+				.collect(Collectors.toList());
+		}
+	
 
 	@Override
 	public void delete(String id) {

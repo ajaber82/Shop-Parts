@@ -1,6 +1,7 @@
 package com.partsshop.rest.dto;
 
-import javax.validation.constraints.NotBlank;
+
+import javax.validation.constraints.NotNull;
 
 import com.partsshop.rest.model.Car;
 import com.partsshop.rest.model.PartsCategory;
@@ -9,11 +10,11 @@ import com.partsshop.rest.model.Shops;
 public class ShopsPartsRest {
 	
 	private String id;
-	@NotBlank
+	@NotNull
 	private PartsCategory part;
-	@NotBlank
+	@NotNull
 	private Shops shop;
-	@NotBlank
+	@NotNull
 	private Car car;
 	private Integer year;
 	private String currency;

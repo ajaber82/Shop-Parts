@@ -3,7 +3,7 @@ package com.partsshop.rest.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "partscategory")
+@Document(collection = "parts-category")
 public class PartsCategory {
 
 	@Id

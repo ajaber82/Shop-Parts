@@ -26,9 +26,9 @@ public class CarServiceImpl implements CarService {
 
 		Car car = new Car();
 		car.setMake(carRest.getMake());
-		car.setType(carRest.getType());
+		car.setModel(carRest.getModel());
 		car.setMakeAr(carRest.getMakeAr());
-		car.setTypeAr(carRest.getTypeAr());
+		car.setModelAr(carRest.getModelAr());
 
 		repo.save(car);
 
@@ -47,9 +47,9 @@ public class CarServiceImpl implements CarService {
 			Car car = new Car();
 			car.setId(carRest.getId());
 			car.setMake(carRest.getMake());
-			car.setType(carRest.getType());
+			car.setModel(carRest.getModel());
 			car.setMakeAr(carRest.getMakeAr());
-			car.setTypeAr(carRest.getTypeAr());
+			car.setModelAr(carRest.getModelAr());
 			repo.save(car);
 			return carRest;
 		} catch (Exception exp) {
@@ -67,9 +67,9 @@ public class CarServiceImpl implements CarService {
 			CarRest carRest = new CarRest();
 			carRest.setId(car.getId());
 			carRest.setMake(car.getMake());
-			carRest.setType(car.getType());
+			carRest.setModel(car.getModel());
 			carRest.setMakeAr(car.getMakeAr());
-			carRest.setTypeAr(car.getTypeAr());
+			carRest.setModelAr(car.getModelAr());
 
 			return carRest;
 		} else {
@@ -99,9 +99,9 @@ public class CarServiceImpl implements CarService {
 		
 		return cars.stream().map(car -> 
 		new CarRest(car.getId(), 
-				car.getMake(), car.getType(),
+				car.getMake(), car.getModel(),
 				car.getMakeAr(),
-				car.getTypeAr())).collect(Collectors.toList()) ; 	
+				car.getModelAr())).collect(Collectors.toList()) ; 	
 	}
 
 	@Override
@@ -111,9 +111,9 @@ public class CarServiceImpl implements CarService {
 		
 		return cars.stream().map(car -> 
 		new CarRest(car.getId(), 
-				car.getMake(), car.getType(),
+				car.getMake(), car.getModel(),
 				car.getMakeAr(),
-				car.getTypeAr())).collect(Collectors.toList()) ; 	
+				car.getModelAr())).collect(Collectors.toList()) ; 	
 		
 		}
 

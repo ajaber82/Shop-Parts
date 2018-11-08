@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,9 +20,12 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.partsshop.rest.dto.CarRest;
 import com.partsshop.rest.dto.RestMessage;
 import com.partsshop.rest.dto.ShopsPartsRest;
 import com.partsshop.rest.dto.ShopsRest;
+import com.partsshop.rest.model.Car;
+import com.partsshop.rest.model.PartsCategory;
 import com.partsshop.rest.service.ShopPartService;
 import com.partsshop.rest.service.ShopService;
 
@@ -76,6 +80,21 @@ public class ShopPartController {
 		
 		List<ShopsPartsRest> shopsParts=this.service.getShopsParts();
 	
+		if(shopsParts==null || shopsParts.isEmpty()) {
+			List<String> ls = new ArrayList<>() ; 
+			ls.add(this.messageSource.getMessage("ShopsParts.notFound", null, locale)) ; 
+			return new ResponseEntity<>(new RestMessage(false, ls), HttpStatus.NOT_FOUND) ;
+		}else {
+			return new ResponseEntity<>(shopsParts, HttpStatus.OK) ;
+		
+		}
+		
+	}
+	
+	@GetMapping("/{name}/{make}/{model}/{year}")
+	public ResponseEntity<?> getCarsByCriteria(@PathVariable("name") PartsCategory name,@PathVariable("make") Car make,@PathVariable("model") Car model,@PathVariable("year") Integer year,@RequestHeader("Accept-Language") Locale locale){
+		
+		List<ShopsPartsRest> shopsParts=this.service.getCarsByCriteria(name, make, model, year);
 		if(shopsParts==null || shopsParts.isEmpty()) {
 			List<String> ls = new ArrayList<>() ; 
 			ls.add(this.messageSource.getMessage("ShopsParts.notFound", null, locale)) ; 
