@@ -105,9 +105,9 @@ public class ShopPartServiceImpl implements ShopPartService {
 	}
 
 	@Override
-	public List<ShopsPartsRest> getCarsByCriteria( PartsCategory partName, Car carMake, Car carModel,Integer year) {
+	public List<ShopsPartsRest> getCarsByCriteria( String make,  String model, String partName,Integer year) {
          
-		List<ShopsParts> shopsParts=repo.findCarsByCriteria(partName, carMake, carModel, year);
+		List<ShopsParts> shopsParts=repo.findCarsByCriteria(make, model, partName, year);
 		
 		//Note:not understand why give me error if i remove getCurrency and getPrice!!!
 		return shopsParts.stream().map(shopPart -> new ShopsPartsRest(shopPart.getId(), shopPart.getPart(),shopPart.getShop()

@@ -20,14 +20,10 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.partsshop.rest.dto.CarRest;
+
 import com.partsshop.rest.dto.RestMessage;
 import com.partsshop.rest.dto.ShopsPartsRest;
-import com.partsshop.rest.dto.ShopsRest;
-import com.partsshop.rest.model.Car;
-import com.partsshop.rest.model.PartsCategory;
 import com.partsshop.rest.service.ShopPartService;
-import com.partsshop.rest.service.ShopService;
 
 @RestController 
 @RequestMapping("/api/v1/shops-parts")
@@ -91,10 +87,14 @@ public class ShopPartController {
 		
 	}
 	
-	@GetMapping("/{name}/{make}/{model}/{year}")
-	public ResponseEntity<?> getCarsByCriteria(@PathVariable("name") PartsCategory name,@PathVariable("make") Car make,@PathVariable("model") Car model,@PathVariable("year") Integer year,@RequestHeader("Accept-Language") Locale locale){
+	@GetMapping("/{make}/{model}/{partName}/{year}")
+	public ResponseEntity<?> getCarsByCriteria(@PathVariable("make") String make,
+			@PathVariable("model") String model,
+			@PathVariable("partName") String partName,
+			@PathVariable("year") Integer year,
+			@RequestHeader("Accept-Language") Locale locale){
 		
-		List<ShopsPartsRest> shopsParts=this.service.getCarsByCriteria(name, make, model, year);
+		List<ShopsPartsRest> shopsParts=this.service.getCarsByCriteria(make, model, partName, year);
 		if(shopsParts==null || shopsParts.isEmpty()) {
 			List<String> ls = new ArrayList<>() ; 
 			ls.add(this.messageSource.getMessage("ShopsParts.notFound", null, locale)) ; 

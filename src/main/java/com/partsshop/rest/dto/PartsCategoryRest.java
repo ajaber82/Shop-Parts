@@ -7,7 +7,7 @@ public class PartsCategoryRest {
 	private String id;
 	@NotBlank
 	private String name;
-	@NotBlank
+	//@NotBlank
 	private String nameAr;
 
 	public PartsCategoryRest() {
